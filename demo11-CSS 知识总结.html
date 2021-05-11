@@ -1,0 +1,225 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        .container{
+            width: 700px;
+            margin: 0 auto;
+            background: grey;
+        }
+        header,footer{
+            text-align: center;
+        }
+        hr{
+            background-color: #d4d4d4;
+            color: #d4d4d4;
+            height: 3px;
+            border: 0;
+            clear: both;
+        }
+
+        /* 跳动的心 */
+        .nav{
+            margin-top: 10px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 5px 20px;
+            font-size: 20px;
+        }
+        .heart{
+            display: inline-block;
+            position: relative;
+            /* transition: all 1s; */
+            animation: heart 1s linear infinite alternate;
+        }
+        /* .heart:hover{
+            transform: scale(1.5);
+        } */
+        @keyframes heart {
+            0%{
+                transform: scale(1);
+            }
+            100%{
+                transform: scale(1.2);
+            }
+        }
+        .heart .bottom{
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            transform: rotate(45deg);
+        }
+        .heart .left{
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            position: absolute;
+            top: -100%;
+            left: -100%;
+            transform: rotate(45deg) translateX(15px);
+            border-radius: 50% 0 0 50%;
+            
+        }
+        .heart .right{
+            height: 20px;
+            width: 20px;
+            background-color: red;
+            position: absolute;
+            top: -100%;
+            right: -100%;
+            transform: rotate(45deg) translateY(15px);
+            border-radius: 50% 50% 0 0;
+        }
+
+        .button{
+            display: inline-block;
+            padding: 0 16px;
+            font-size: 14px;
+            line-height: 32px;
+            text-align: center;
+            cursor: pointer;
+            background: none;
+            border: 1px solid;
+            border-radius: 3px;
+            background: cornflowerblue;
+        }
+        .content{
+            padding: 0 20px;
+        }
+        h2{
+            margin-top: 10px;
+        }
+        .content1 .process{
+            margin-top: 5px;
+           
+        }
+        ol,ul{
+            margin-left: 20px;
+        }
+        .process h3,.amt h3{
+            margin-top: 10px;
+            margin-bottom: 10px;
+        }
+        .tree> img,.update > img,.amt img{
+            width: 640px;
+        }
+        .tfm,.tsn,.amt{
+            margin-left: 5px;
+            margin-top: 5px;
+        }
+        .tfm ul,.tsn ul{
+            margin-top: 5px;
+            margin-bottom: 5px;
+            margin-left: 35px;
+        }
+        footer{
+            padding-bottom: 10px;
+        }
+
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header><h1>CSS 知识总结</h1></header>
+        <hr>
+        <main>
+            <section class="nav">
+                <div>
+                    <div class="heart">
+                        <div class="bottom"></div>
+                        <div class="left"></div>
+                        <div class="right"></div>
+                    </div>
+                    <span>谷子</span>
+                </div>
+                <div class='button'>+ 关注他</div>
+            </section>
+            <hr>
+            <section class="content">
+                <h2>一、浏览器渲染原理</h2>
+                <div class="process">
+                    <ol>
+                        <li><h3>浏览器渲染过程：</h3>
+                            <ul>
+                                <li>根据HTML构建HTML树(DOM)</li>
+                                <li>根据CSS构建CSS树(CSSOM)</li>
+                                <li>将两棵树合并成一颗渲染树(render tree)</li>
+                                <li>Layout布局(文档流、盒模型、计算大小和位置</li>
+                                <li>Paint绘制(把边框颜色、文字颜色、阴影等画出来</li>
+                                <li>Compose合成(根据层叠关系展示画面)</li>
+                            </ul>
+                        </li>
+                        <li>
+                            <div class="tree">
+                                <h3>三棵树：</h3>
+                                <img src="1.jpg" alt="">
+                            </div>
+                        </li>
+                        <li>
+                            <div class="update">
+                                <h3>三种更新方式：</h3>
+                                <img src="2.jpg" alt="">
+                            </div>
+                        </li>
+                    </ol>
+                </div>
+            </section>
+            <section class="content">
+                <h2>二、tarnsform介绍</h2>
+                <div class="tfm">
+                    <h3>常用属性:</h3>
+                    <ul>
+                        <li>位移translate</li>
+                        <li>缩放scale</li>
+                        <li>旋转rotate</li>
+                        <li>倾斜skew</li>
+                    </ul>
+                    <span>注：一般都需要配合transition过渡<br>
+                        inline元素不支持transform,需要先变成block</span>
+                </div>
+            </section>
+            <section class="content">
+                <h2>三、transition过渡</h2>
+                <div class="tsn">
+                    <h3>常用属性:</h3>
+                    <ul>
+                        <li>transition:属性名时长过渡方式延迟</li>
+                        <li>transition: left 200ms linear</li>
+                        <li>可以用逗号分隔两个不同属性</li>
+                        <li>transition: left 200ms, top 400ms</li>
+                        <li>可以用all代表所有属性</li>
+                        <li>transition: all 200ms</li>
+                        <li>过渡方式有: linear | ease | ease-in |ease-out | ease-in-out | cubic-bezier | step-start | step-end steps。</li>
+                    </ul>
+                    <span>注：transition 可以同时给多个属性添加过渡效果，比如可以在移动元素的同时，
+                        改变其透明度。但不管有多少个属性同时在变化，这种过渡效果只能是一次性的，也就是单个动作。</span>
+                </div>
+            </section>
+            <section class="content">
+                <h2>四、animation动画</h2>
+                <div class="amt">
+                    <p>transition 只能做单个动作，如果动画包含多个动作，这时候就需要 animation</p>
+                    <p>两个连续的线段有三个关键点，两个连续的动作必然也有三个关键帧（keyframe）。</p>
+                    <h3>@keyframes的写法:</h3>
+                    <img src="6.jpg" alt="">
+                    <h3>常用属性:</h3>
+                    <img src="5.jpg" alt="">
+                </div>
+            </section>
+        </main>
+        <hr>
+        <footer><h2>&copy;个人所有</h2></footer>
+    </div>
+</body>
+</html>
